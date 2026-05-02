@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loading… 💖</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+/* 🌸 BACKGROUND */
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:linear-gradient(120deg,#fce4ec,#f5e6d3);
+  overflow:hidden;
+  font-family:'Dancing Script', cursive;
+}
+
+/* 💖 CARD */
+.card{
+  text-align:center;
+  padding:40px;
+
+  background:rgba(255,255,255,0.5);
+  backdrop-filter:blur(15px);
+
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ✨ MAIN TEXT */
+.loader-text{
+  font-family:'Great Vibes', cursive;
+  font-size:38px;
+  margin-bottom:10px;
+
+  animation:fadePulse 2s infinite;
+}
+
+/* 🌸 SUBTEXT */
+.subtitle{
+  font-size:18px;
+  opacity:0.8;
+}
+
+/* ✨ PULSE */
+@keyframes fadePulse{
+  0%{opacity:0.4}
+  50%{opacity:1}
+  100%{opacity:0.4}
+}
+
+/* 🌸 PETALS */
+.petal{
+  position:absolute;
+  top:-10px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(100vh) rotate(360deg);
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+  <h1 class="loader-text">
+    Loading something special for Mahi 🌸
+  </h1>
+
+  <p class="subtitle">
+    Don’t rush this… it’s worth it 💖
+  </p>
+
+</div>
+
+<!-- 🌸 PETALS -->
+<script>
+for(let i=0;i<15;i++){
+  let petal=document.createElement("div");
+  petal.innerHTML="🌸";
+  petal.className="petal";
+
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.animationDuration=(5+Math.random()*5)+"s";
+  petal.style.fontSize=(15+Math.random()*20)+"px";
+
+  document.body.appendChild(petal);
+}
+</script>
+
+<!-- 🎬 TRANSITION -->
+<script>
+setTimeout(()=>{
+  document.body.style.transition="1s";
+  document.body.style.opacity="0";
+
+  setTimeout(()=>{
+    window.location.href="page1.html";
+  },1000);
+
+},2500);
+</script>
+
+</body>
+</html>

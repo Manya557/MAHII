@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Make a wish 🎂</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.cake{
+  font-size:100px;
+  margin:20px 0;
+}
+
+.candles{
+  font-size:25px;
+  margin-bottom:10px;
+  transition:0.5s;
+}
+
+.glow{
+  text-shadow:0 0 20px #fff, 0 0 40px #ff4d88;
+  margin-top:20px;
+}
+
+/* 🎉 CONFETTI */
+.confetti{
+  position:absolute;
+  width:10px;
+  height:10px;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(100vh);
+  }
+}
+
+/* 🎬 VIDEO */
+#videoOverlay{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+#fullVideo{
+  width:75%;
+  height:75%;
+  object-fit:contain;
+  border-radius:20px;
+}
+
+/* 🌑 BACKGROUND DIM */
+#dimOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  opacity:0;
+  transition:1s;
+  z-index:998;
+}
+
+/* 💌 FINAL TEXT */
+#finalText{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  font-size:2.2rem;
+  color:#fffaf3;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.9),
+    0 0 25px rgba(255,105,180,0.6);
+
+  opacity:0;
+  transition:1.5s;
+  z-index:1000;
+
+  max-width:80%;
+  line-height:1.6;
+}
+</style>
+
+</head>
+
+<body class="page">
+
+<div class="card">
+
+  <h1 class="title">Make a wish, Mahi 🎂</h1>
+  <p class="subtitle">Blow into the mic… 💨</p>
+
+  <div class="cake">🎂</div>
+
+  <div id="candles" class="candles">
+    🕯️🕯️🕯️🕯️🕯️<br>
+    🕯️🕯️🕯️🕯️🕯️<br>
+    🕯️🕯️🕯️🕯️🕯️<br>
+    🕯️🕯️🕯️🕯️🕯️
+  </div>
+
+  <h2 id="msg" class="glow"></h2>
+
+  <audio id="song" src="audio/her.mp3"></audio>
+
+</div>
+
+<!-- 🎬 VIDEO -->
+<div id="videoOverlay">
+  <video id="fullVideo" src="video/memory.mp4" autoplay muted loop></video>
+</div>
+
+<!-- 🌑 DIM -->
+<div id="dimOverlay"></div>
+
+<!-- 💌 FINAL TEXT -->
+<div id="finalText"></div>
+
+<script>
+
+let blown = false;
+
+const finalMessage = [
+  "thank you for everything you’ve been and done for me 💖",
+  "i will always be your biggest cheerleader!",
+  "i love you to the moon and back 🌙"
+];
+
+/* ✍️ TYPEWRITER */
+function typeWriter(lines, element){
+  let lineIndex = 0;
+  let charIndex = 0;
+
+  function type(){
+    if(lineIndex < lines.length){
+      if(charIndex < lines[lineIndex].length){
+        element.innerHTML += lines[lineIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 40);
+      } else {
+        element.innerHTML += "<br>";
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(type, 400);
+      }
+    }
+  }
+
+  type();
+}
+
+
+/* 🎂 MAIN */
+function blowCandles(){
+  if(blown) return;
+  blown = true;
+
+  const candles = document.getElementById("candles");
+  const msg = document.getElementById("msg");
+  const song = document.getElementById("song");
+
+  candles.style.opacity = 0;
+
+  msg.innerHTML = `
+    ✨ Happy 20th Birthday Mahi 💖 <br>
+    I love you so fucking much and you ofc know it!<br>
+    You are my home forever!!🫶
+  `;
+
+  launchConfetti();
+
+  song.currentTime = 0;
+  song.play().catch(()=>{});
+
+  /* 🎬 VIDEO */
+  setTimeout(()=>{
+    document.getElementById("videoOverlay").style.display = "flex";
+  },2000);
+
+  /* 💌 FINAL SCENE */
+  song.onended = ()=>{
+    document.getElementById("videoOverlay").style.display = "none";
+
+    const dim = document.getElementById("dimOverlay");
+    const text = document.getElementById("finalText");
+
+    dim.style.opacity = "1";
+
+    setTimeout(()=>{
+      text.style.opacity = "1";
+      typeWriter(finalMessage, text);
+    },1000);
+  };
+}
+
+
+/* 🎉 CONFETTI */
+function launchConfetti(){
+  const colors = ["#ff4d88","#ffd700","#7b2ff7","#00c6ff","#ffffff"];
+
+  for(let i=0;i<80;i++){
+    const conf = document.createElement("div");
+    conf.className = "confetti";
+
+    conf.style.left = "50vw";
+    conf.style.top = "50vh";
+
+    conf.style.background = colors[Math.floor(Math.random()*colors.length)];
+
+    conf.style.animation = `fall ${2 + Math.random()*3}s linear`;
+
+    conf.style.transform = `
+      translateX(${Math.random()*200 - 100}px)
+      rotate(${Math.random()*360}deg)
+    `;
+
+    document.body.appendChild(conf);
+
+    setTimeout(()=>conf.remove(),5000);
+  }
+}
+
+
+/* 🎤 MIC */
+navigator.mediaDevices.getUserMedia({audio:true})
+.then(stream => {
+  const ctx = new AudioContext();
+  const mic = ctx.createMediaStreamSource(stream);
+  const analyser = ctx.createAnalyser();
+
+  mic.connect(analyser);
+
+  const data = new Uint8Array(analyser.frequencyBinCount);
+
+  function detect(){
+    analyser.getByteFrequencyData(data);
+    let volume = data.reduce((a,b)=>a+b)/data.length;
+
+    if(volume > 65){
+      blowCandles();
+    }
+
+    requestAnimationFrame(detect);
+  }
+
+  detect();
+})
+.catch(()=>{});
+
+
+/* 👆 TAP FALLBACK */
+document.addEventListener("click", blowCandles);
+
+</script>
+
+</body>
+</html>

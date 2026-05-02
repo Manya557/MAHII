@@ -1,0 +1,280 @@
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ===== BODY ===== */
+body{
+  font-family:'Poppins',sans-serif;
+  background: radial-gradient(circle at top,#fff0f5,#f8e1e7,#e6d3d3);
+
+  overflow-y:auto; /* ✅ FIXED (important) */
+
+  transition:0.3s ease;
+}
+
+/* 🎬 SOFT VIGNETTE */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.25));
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ===== PAGE LAYOUT ===== */
+.page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  position:relative;
+  z-index:2;
+}
+
+/* ===== CARD ===== */
+.card{
+  max-width:650px;
+  width:90%;
+  padding:35px;
+
+  background:#fffaf3;
+  border-radius:15px;
+
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+
+  text-align:center;
+  position:relative;
+}
+
+/* 🌸 decorations */
+.card::before{
+  content:"🌸";
+  position:absolute;
+  top:10px;
+  left:10px;
+}
+
+.card::after{
+  content:"🌿";
+  position:absolute;
+  bottom:10px;
+  right:10px;
+}
+
+/* ===== TEXT ===== */
+.title{
+  font-family:'Great Vibes',cursive;
+  font-size:2.8rem;
+  color:#6b2d2d;
+}
+
+.subtitle{
+  opacity:0.7;
+  margin-bottom:10px;
+}
+
+.text{
+  margin:10px 0;
+  line-height:1.6;
+
+  opacity:1; /* ✅ fallback fix */
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ===== IMAGE ===== */
+.photo{
+  width:230px;
+  border-radius:20px;
+  margin:20px 0;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ===== POLAROID ===== */
+.polaroid{
+  background:white;
+  padding:10px 10px 25px;
+  width:220px;
+  margin:20px auto;
+
+  transform:rotate(-3deg);
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.polaroid img{
+  width:100%;
+  border-radius:6px;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  margin-top:25px;
+  padding:10px 24px;
+
+  border:none;
+  border-radius:20px;
+
+  background:#ff6f91;
+  color:white;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  background:#ff4d88;
+}
+
+/* ================================================= */
+/* 🎂 CAKE PAGE */
+/* ================================================= */
+
+.cake{
+  font-size:110px;
+  margin:15px 0 5px;
+}
+
+.candles{
+  font-size:26px;
+  margin-bottom:8px;
+  transition:0.6s;
+}
+
+/* ================================================= */
+/* 🎬 VIDEO OVERLAY */
+/* ================================================= */
+
+.video-overlay{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,0.85);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  opacity:0;
+  pointer-events:none;
+  transition:1s;
+  z-index:999;
+}
+
+.video-overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* 🎥 FRAME */
+.video-frame{
+  width:75vw;
+  height:75vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:#000;
+  border-radius:20px;
+  overflow:hidden;
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.8),
+    0 0 60px rgba(255,182,193,0.15);
+
+  animation:zoomIn 0.8s ease;
+}
+
+/* 🎥 VIDEO */
+#fullVideo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:black;
+}
+
+/* 🎬 ENTRY */
+@keyframes zoomIn{
+  from{
+    transform:scale(0.92);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* ===== FINAL TEXT ===== */
+.final-text{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  text-align:center;
+  font-family:'Great Vibes',cursive;
+  font-size:2.2rem;
+
+  color:#fffaf3; /* soft white */
+
+  /* ✨ glow effect */
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.8),
+    0 0 20px rgba(255,182,193,0.6),
+    0 0 40px rgba(255,105,180,0.4);
+
+  line-height:1.6;
+  max-width:80%;
+  padding:10px 20px;
+
+  opacity:0;
+  transition:1.5s ease;
+
+  z-index:1000;
+}
+
+.final-text.show{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1.02);
+}
+
+/* ===== CONFETTI ===== */
+.confetti{
+  position:fixed;
+  width:8px;
+  height:10px;
+  border-radius:2px;
+  opacity:1;
+  transition:4s linear;
+}
+
+/* ===== PETALS ===== */
+.petal{
+  position:fixed;
+  pointer-events:none;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
