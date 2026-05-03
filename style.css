@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
+
 /* ===== RESET ===== */
 *{
   margin:0;
@@ -8,11 +9,9 @@
 
 /* ===== BODY ===== */
 body{
-  font-family:'Poppins',sans-serif;
+  font-family:'Poppins', sans-serif;
   background: radial-gradient(circle at top,#fff0f5,#f8e1e7,#e6d3d3);
-
-  overflow-y:auto; /* ✅ FIXED (important) */
-
+  overflow-y:auto;
   transition:0.3s ease;
 }
 
@@ -42,12 +41,9 @@ body::after{
   max-width:650px;
   width:90%;
   padding:35px;
-
   background:#fffaf3;
   border-radius:15px;
-
   box-shadow:0 15px 40px rgba(0,0,0,0.2);
-
   text-align:center;
   position:relative;
 }
@@ -68,29 +64,30 @@ body::after{
 }
 
 /* ===== TEXT ===== */
-/* ===== GLOBAL FONT ===== */
-body{
-  font-family: 'Poppins', sans-serif;
-}
 
 /* 💖 HEADINGS */
 .title{
-  font-family: 'Great Vibes', cursive;
+  font-family:'Great Vibes', cursive;
   font-size:2.8rem;
   letter-spacing:1px;
+  color:#6b2d2d;
 }
 
 /* ✨ SUBTEXT */
 .subtitle{
-  font-family: 'Poppins', sans-serif;
   font-weight:300;
+  margin-bottom:10px;
+  letter-spacing:0.5px;
+  opacity:0.8;
 }
 
 /* 📖 MAIN TEXT */
 .text{
-  font-family: 'Poppins', sans-serif;
-  font-weight:400;
+  margin:10px 0;
+  line-height:1.6;
   font-size:1rem;
+  letter-spacing:0.3px;
+  opacity:1; /* important fallback */
 }
 
 /* ===== ANIMATION ===== */
@@ -119,9 +116,7 @@ body{
   padding:10px 10px 25px;
   width:220px;
   margin:20px auto;
-
   transform:rotate(-3deg);
-
   box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
@@ -134,13 +129,10 @@ body{
 .btn{
   margin-top:25px;
   padding:10px 24px;
-
   border:none;
   border-radius:20px;
-
   background:#ff6f91;
   color:white;
-
   cursor:pointer;
   transition:0.3s;
 }
@@ -172,13 +164,10 @@ body{
 .video-overlay{
   position:fixed;
   inset:0;
-
   background:rgba(0,0,0,0.85);
-
   display:flex;
   justify-content:center;
   align-items:center;
-
   opacity:0;
   pointer-events:none;
   transition:1s;
@@ -194,19 +183,15 @@ body{
 .video-frame{
   width:75vw;
   height:75vh;
-
   display:flex;
   justify-content:center;
   align-items:center;
-
   background:#000;
   border-radius:20px;
   overflow:hidden;
-
   box-shadow:
     0 0 40px rgba(0,0,0,0.8),
     0 0 60px rgba(255,182,193,0.15);
-
   animation:zoomIn 0.8s ease;
 }
 
@@ -236,14 +221,11 @@ body{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-
   text-align:center;
   font-family:'Great Vibes',cursive;
   font-size:2.2rem;
+  color:#fffaf3;
 
-  color:#fffaf3; /* soft white */
-
-  /* ✨ glow effect */
   text-shadow:
     0 0 8px rgba(255,255,255,0.8),
     0 0 20px rgba(255,182,193,0.6),
@@ -255,7 +237,6 @@ body{
 
   opacity:0;
   transition:1.5s ease;
-
   z-index:1000;
 }
 
@@ -285,11 +266,4 @@ body{
   to{
     transform:translateY(110vh) rotate(360deg);
   }
-}
-.text{
-  letter-spacing:0.3px;
-}
-
-.subtitle{
-  letter-spacing:0.5px;
 }
