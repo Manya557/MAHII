@@ -1,160 +1,372 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
 
-/* ===== RESET ===== */
+/* ================================================= */
+/* 🌸 RESET */
+/* ================================================= */
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
-/* ===== BODY ===== */
+/* ================================================= */
+/* 🌙 BODY */
+/* ================================================= */
+
 body{
   font-family:'Poppins', sans-serif;
-  background: radial-gradient(circle at top,#fff0f5,#f8e1e7,#e6d3d3);
+
+  background:
+    radial-gradient(circle at top,#fdf1f5,#f3ddd9,#dcc7bb);
+
   overflow-y:auto;
-  transition:0.3s ease;
+  overflow-x:hidden;
+
+  color:#4b2e1e;
+
+  transition:0.4s ease;
+
+  position:relative;
 }
 
-/* 🎬 SOFT VIGNETTE */
-body::after{
+/* ✨ vintage grain overlay */
+body::before{
   content:"";
+
   position:fixed;
   inset:0;
-  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.25));
+
+  background-image:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+
+  opacity:0.22;
+
   pointer-events:none;
+
+  z-index:0;
+}
+
+/* 🌑 vignette */
+body::after{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle,
+    transparent 58%,
+    rgba(0,0,0,0.28));
+
+  pointer-events:none;
+
   z-index:1;
 }
 
-/* ===== PAGE LAYOUT ===== */
+/* ================================================= */
+/* 📜 PAGE */
+/* ================================================= */
+
 .page{
   min-height:100vh;
+
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:20px;
+
+  padding:40px 20px;
+
   position:relative;
   z-index:2;
 }
 
-/* ===== CARD ===== */
+/* ================================================= */
+/* 📜 VINTAGE LETTER CARD */
+/* ================================================= */
+
 .card{
-  max-width:650px;
   width:90%;
-  padding:35px;
-  background:#fffaf3;
-  border-radius:15px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
-  text-align:center;
+  max-width:760px;
+
   position:relative;
+
+  padding:55px 45px;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.07),
+      rgba(255,255,255,0.02)
+    ),
+    #e8d2a8;
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  text-align:center;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,0.35),
+    inset 0 0 80px rgba(255,255,255,0.12);
+
+  border:1px solid rgba(120,90,40,0.18);
+
+  animation:fadeUp 0.8s ease;
+
+  transform:rotate(-0.6deg);
 }
 
-/* 🌸 decorations */
+/* 📜 paper texture */
 .card::before{
-  content:"🌸";
+  content:"";
+
   position:absolute;
-  top:10px;
-  left:10px;
+  inset:0;
+
+  background:
+    repeating-linear-gradient(
+      transparent,
+      transparent 30px,
+      rgba(90,60,30,0.07) 31px
+    );
+
+  opacity:0.55;
+
+  pointer-events:none;
 }
 
+/* 🌸 floral doodle */
 .card::after{
-  content:"🌿";
+  content:"🌸";
+
   position:absolute;
-  bottom:10px;
-  right:10px;
-}
 
-/* ===== TEXT ===== */
+  top:12px;
+  right:18px;
 
-/* 💖 HEADINGS */
-.title{
-  font-family:'Great Vibes', cursive;
-  font-size:2.8rem;
-  letter-spacing:1px;
-  color:#6b2d2d;
-}
+  font-size:24px;
 
-/* ✨ SUBTEXT */
-.subtitle{
-  font-weight:300;
-  margin-bottom:10px;
-  letter-spacing:0.5px;
   opacity:0.8;
 }
 
-/* 📖 MAIN TEXT */
-.text{
-  margin:10px 0;
-  line-height:1.6;
+/* ================================================= */
+/* ✨ TORN PAPER EDGES */
+/* ================================================= */
+
+.card-edge-top,
+.card-edge-bottom{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:18px;
+  background:inherit;
+  z-index:3;
+}
+
+.card-edge-top{
+  top:-8px;
+  clip-path:polygon(
+    0 50%,5% 20%,10% 65%,15% 30%,20% 75%,
+    25% 25%,30% 70%,35% 40%,40% 80%,45% 20%,
+    50% 65%,55% 30%,60% 75%,65% 20%,70% 70%,
+    75% 35%,80% 80%,85% 20%,90% 70%,95% 30%,100% 60%
+  );
+}
+
+.card-edge-bottom{
+  bottom:-8px;
+
+  clip-path:polygon(
+    0 40%,5% 80%,10% 35%,15% 75%,20% 25%,
+    25% 70%,30% 20%,35% 60%,40% 15%,45% 80%,
+    50% 35%,55% 70%,60% 20%,65% 80%,70% 35%,
+    75% 65%,80% 25%,85% 75%,90% 35%,95% 80%,100% 40%
+  );
+}
+
+/* ================================================= */
+/* 💖 TITLES */
+/* ================================================= */
+
+.title{
+  font-family:'Great Vibes', cursive;
+
+  font-size:3.3rem;
+
+  color:#5b2d1c;
+
+  margin-bottom:12px;
+
+  text-shadow:
+    0 2px 10px rgba(255,255,255,0.35);
+
+  animation:fadeUp 1s ease;
+}
+
+/* ================================================= */
+/* ✨ SUBTITLE */
+/* ================================================= */
+
+.subtitle{
   font-size:1rem;
-  letter-spacing:0.3px;
-  opacity:1; /* important fallback */
+
+  color:#6f4a37;
+
+  opacity:0.82;
+
+  margin-bottom:20px;
+
+  font-style:italic;
+
+  letter-spacing:0.5px;
+
+  animation:fadeUp 1.2s ease;
 }
 
-/* ===== ANIMATION ===== */
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+/* ================================================= */
+/* ✍️ HANDWRITTEN TEXT */
+/* ================================================= */
+
+.text{
+  font-family:'Caveat', cursive;
+
+  font-size:1.65rem;
+
+  line-height:1.8;
+
+  color:#4a2d1b;
+
+  margin:14px 0;
+
+  letter-spacing:0.4px;
+
+  animation:fadeUp 1.1s ease;
+
+  position:relative;
 }
 
-/* ===== IMAGE ===== */
+/* ✨ slight ink fade */
+.text::selection{
+  background:#c89c6d;
+  color:white;
+}
+
+/* ================================================= */
+/* 📸 PHOTO */
+/* ================================================= */
+
 .photo{
-  width:230px;
-  border-radius:20px;
-  margin:20px 0;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  width:250px;
+
+  margin:28px 0;
+
+  border-radius:4px;
+
+  border:10px solid #f9f5ee;
+  border-bottom:38px solid #f9f5ee;
+
+  box-shadow:
+    0 12px 25px rgba(0,0,0,0.28);
+
+  transform:rotate(-2deg);
+
+  transition:0.4s ease;
 }
 
-/* ===== POLAROID ===== */
+.photo:hover{
+  transform:rotate(0deg) scale(1.03);
+}
+
+/* ================================================= */
+/* 📷 POLAROID */
+/* ================================================= */
+
 .polaroid{
-  background:white;
-  padding:10px 10px 25px;
-  width:220px;
-  margin:20px auto;
+  background:#fff;
+
+  padding:10px 10px 30px;
+
+  width:240px;
+
+  margin:30px auto;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
+
   transform:rotate(-3deg);
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+  transition:0.4s ease;
+}
+
+.polaroid:hover{
+  transform:rotate(0deg) scale(1.03);
 }
 
 .polaroid img{
   width:100%;
-  border-radius:6px;
+  border-radius:3px;
 }
 
-/* ===== BUTTON ===== */
+/* ================================================= */
+/* 🎀 BUTTON */
+/* ================================================= */
+
 .btn{
-  margin-top:25px;
-  padding:10px 24px;
+  margin-top:28px;
+
+  padding:13px 28px;
+
   border:none;
-  border-radius:20px;
-  background:#ff6f91;
+  border-radius:40px;
+
+  background:
+    linear-gradient(135deg,#ff7aa2,#ff4f88);
+
   color:white;
+
+  font-size:1rem;
+  font-weight:500;
+
   cursor:pointer;
-  transition:0.3s;
+
+  box-shadow:
+    0 8px 20px rgba(255,105,140,0.35);
+
+  transition:0.35s ease;
 }
 
 .btn:hover{
-  transform:scale(1.1);
-  background:#ff4d88;
+  transform:translateY(-3px) scale(1.05);
+
+  box-shadow:
+    0 14px 30px rgba(255,105,140,0.45);
 }
 
 /* ================================================= */
-/* 🎂 CAKE PAGE */
+/* 🎂 CAKE */
 /* ================================================= */
 
 .cake{
-  font-size:110px;
-  margin:15px 0 5px;
+  font-size:120px;
+
+  margin:10px 0 0;
+
+  animation:floatCake 3s ease-in-out infinite;
+}
+
+@keyframes floatCake{
+  0%{ transform:translateY(0px); }
+  50%{ transform:translateY(-8px); }
+  100%{ transform:translateY(0px); }
 }
 
 .candles{
   font-size:26px;
-  margin-bottom:8px;
-  transition:0.6s;
+
+  margin-bottom:12px;
+
+  transition:0.6s ease;
 }
 
 /* ================================================= */
@@ -164,13 +376,18 @@ body::after{
 .video-overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.85);
+
+  background:rgba(0,0,0,0.88);
+
   display:flex;
   justify-content:center;
   align-items:center;
+
   opacity:0;
   pointer-events:none;
+
   transition:1s;
+
   z-index:999;
 }
 
@@ -183,15 +400,17 @@ body::after{
 .video-frame{
   width:75vw;
   height:75vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#000;
-  border-radius:20px;
+
+  background:black;
+
+  border-radius:22px;
+
   overflow:hidden;
+
   box-shadow:
-    0 0 40px rgba(0,0,0,0.8),
-    0 0 60px rgba(255,182,193,0.15);
+    0 0 50px rgba(0,0,0,0.8),
+    0 0 80px rgba(255,182,193,0.15);
+
   animation:zoomIn 0.8s ease;
 }
 
@@ -199,71 +418,148 @@ body::after{
 #fullVideo{
   width:100%;
   height:100%;
+
   object-fit:contain;
+
   background:black;
 }
 
-/* 🎬 ENTRY */
+/* ================================================= */
+/* 💌 FINAL MESSAGE */
+/* ================================================= */
+
+.final-text{
+  position:fixed;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  text-align:center;
+
+  font-family:'Great Vibes', cursive;
+
+  font-size:2.8rem;
+
+  color:#fff7f2;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.85),
+    0 0 25px rgba(255,182,193,0.7),
+    0 0 50px rgba(255,105,180,0.45);
+
+  line-height:1.7;
+
+  max-width:85%;
+
+  opacity:0;
+
+  transition:1.6s ease;
+
+  z-index:1000;
+}
+
+.final-text.show{
+  opacity:1;
+
+  transform:translate(-50%,-50%) scale(1.03);
+}
+
+/* ================================================= */
+/* 🎉 CONFETTI */
+/* ================================================= */
+
+.confetti{
+  position:fixed;
+
+  width:8px;
+  height:12px;
+
+  border-radius:2px;
+
+  opacity:1;
+
+  transition:4s linear;
+}
+
+/* ================================================= */
+/* 🌸 PETALS */
+/* ================================================= */
+
+.petal{
+  position:fixed;
+
+  pointer-events:none;
+
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:
+      translateY(110vh)
+      rotate(360deg);
+  }
+}
+
+/* ================================================= */
+/* ✨ ENTRY ANIMATION */
+/* ================================================= */
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* 🎬 VIDEO ENTRY */
 @keyframes zoomIn{
   from{
-    transform:scale(0.92);
+    transform:scale(0.9);
     opacity:0;
   }
+
   to{
     transform:scale(1);
     opacity:1;
   }
 }
 
-/* ===== FINAL TEXT ===== */
-.final-text{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-  font-family:'Great Vibes',cursive;
-  font-size:2.2rem;
-  color:#fffaf3;
+/* ================================================= */
+/* 📱 MOBILE */
+/* ================================================= */
 
-  text-shadow:
-    0 0 8px rgba(255,255,255,0.8),
-    0 0 20px rgba(255,182,193,0.6),
-    0 0 40px rgba(255,105,180,0.4);
+@media(max-width:768px){
 
-  line-height:1.6;
-  max-width:80%;
-  padding:10px 20px;
+  .card{
+    padding:40px 24px;
+  }
 
-  opacity:0;
-  transition:1.5s ease;
-  z-index:1000;
-}
+  .title{
+    font-size:2.6rem;
+  }
 
-.final-text.show{
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1.02);
-}
+  .text{
+    font-size:1.45rem;
+  }
 
-/* ===== CONFETTI ===== */
-.confetti{
-  position:fixed;
-  width:8px;
-  height:10px;
-  border-radius:2px;
-  opacity:1;
-  transition:4s linear;
-}
+  .photo{
+    width:210px;
+  }
 
-/* ===== PETALS ===== */
-.petal{
-  position:fixed;
-  pointer-events:none;
-  animation:fall linear infinite;
-}
+  .video-frame{
+    width:92vw;
+    height:60vh;
+  }
 
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
+  .final-text{
+    font-size:2rem;
   }
 }
