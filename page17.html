@@ -1,69 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Letters for you 💌</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Letters for Mahi 💌</title>
 
 <link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
 
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<script src="script.js" defer></script>
 </head>
 
 <body class="page">
 
+<!-- 🌸 BACKGROUND PETALS -->
+<div class="petals"></div>
+
 <div class="letter-page">
 
-<h1 class="title">
-Letters for Mahi 💌
-</h1>
+  <h1 class="main-title">
+    Letters for Mahi 💌
+  </h1>
 
-<p class="subtitle">
-Click each envelope slowly...
-</p>
+  <p class="main-subtitle">
+    Open them slowly okay?
+  </p>
 
-<div class="envelope-grid">
+  <!-- 💌 ENVELOPES -->
+  <div class="envelope-grid">
 
-  <!-- 💌 Envelope 1 -->
-  <div class="env-wrap" onclick="openLetter(1)">
-    <img src="images/envelope.jpeg" class="envelope">
-    <p>Letter One 🌸</p>
+    <div class="env-wrap" onclick="openLetter(1)">
+      <img src="images/envelope.png" class="envelope">
+      <p>Letter One 🌸</p>
+    </div>
+
+    <div class="env-wrap" onclick="openLetter(2)">
+      <img src="images/envelope.png" class="envelope">
+      <p>Letter Two 🌙</p>
+    </div>
+
+    <div class="env-wrap" onclick="openLetter(3)">
+      <img src="images/envelope.png" class="envelope">
+      <p>Letter Three 💖</p>
+    </div>
+
+    <div class="env-wrap" onclick="openLetter(4)">
+      <img src="images/envelope.png" class="envelope">
+      <p>Last Letter ✨</p>
+    </div>
+
   </div>
-
-  <!-- 💌 Envelope 2 -->
-  <div class="env-wrap" onclick="openLetter(2)">
-    <img src="images/envelope.jpeg" class="envelope">
-    <p>Letter Two 🌙</p>
-  </div>
-
-  <!-- 💌 Envelope 3 -->
-  <div class="env-wrap" onclick="openLetter(3)">
-    <img src="images/envelope.jpeg" class="envelope">
-    <p>Letter Three 💖</p>
-  </div>
-
-  <!-- 💌 Envelope 4 -->
-  <div class="env-wrap" onclick="openLetter(4)">
-    <img src="images/envelope.jpeg" class="envelope">
-    <p>Last Letter ✨</p>
-  </div>
-
-</div>
 
 </div>
 
 <!-- 💌 LETTER POPUP -->
 <div id="letterPopup">
 
-  <div class="paper">
+  <div class="paper-wrapper">
 
-    <button class="close-btn" onclick="closeLetter()">
-      ✕
-    </button>
+    <!-- 📜 CRUMPLED PAPER -->
+    <div class="paper">
 
-    <div id="letterContent"></div>
+      <!-- ❌ CLOSE -->
+      <button class="close-btn" onclick="closeLetter()">
+        ✕
+      </button>
+
+      <!-- ✨ TYPEWRITER TEXT -->
+      <div id="letterContent"></div>
+
+    </div>
 
   </div>
 
 </div>
+
+<!-- ⌨️ TYPEWRITER SOUND -->
+<audio id="typingSound" src="audio/type.mp3"></audio>
 
 </body>
 </html>
