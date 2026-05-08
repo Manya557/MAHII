@@ -188,13 +188,15 @@ body::after{
   width:85vw;
   max-width:820px;
 
-  min-height:75vh;
+  height:80vh;              /* ✅ fixed height */
+  max-height:80vh;
 
   position:relative;
 
   padding:70px 60px;
 
-  overflow-y:auto;
+  overflow-y:auto;          /* ✅ SCROLL ENABLED */
+  overflow-x:hidden;
 
   background:
   linear-gradient(
@@ -215,6 +217,26 @@ body::after{
   transform:
   rotate(-1deg);
 
+  scrollbar-width:thin;
+  scrollbar-color:#8b5e3c transparent;
+}
+
+/* ✨ vintage scroll bar */
+.paper::-webkit-scrollbar{
+  width:8px;
+}
+
+.paper::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.paper::-webkit-scrollbar-thumb{
+  background:#8b5e3c;
+  border-radius:20px;
+}
+
+.paper::-webkit-scrollbar-thumb:hover{
+  background:#6f4327;
 }
 
 /* ✨ crumpled overlay */
@@ -238,7 +260,7 @@ body::after{
   pointer-events:none;
 }
 
-/* ✨ folds */
+/* ✨ folds/light */
 .paper::after{
   content:"";
 
@@ -257,7 +279,6 @@ body::after{
 
   pointer-events:none;
 }
-
 /* ================================================= */
 /* ✕ CLOSE */
 /* ================================================= */
