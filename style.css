@@ -563,3 +563,175 @@ body::after{
     font-size:2rem;
   }
 }
+/* ================================================= */
+/* 💌 LETTER PAGE */
+/* ================================================= */
+
+.letter-page{
+  text-align:center;
+  z-index:2;
+  position:relative;
+}
+
+.envelope-grid{
+  margin-top:40px;
+
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+
+  gap:40px;
+}
+
+/* ✉️ envelope */
+.env-wrap{
+  cursor:pointer;
+  transition:0.4s ease;
+}
+
+.env-wrap:hover{
+  transform:translateY(-10px) scale(1.05);
+}
+
+.envelope{
+  width:220px;
+
+  filter:
+    drop-shadow(0 12px 20px rgba(0,0,0,0.35));
+}
+
+.env-wrap p{
+  margin-top:12px;
+
+  font-family:'Caveat', cursive;
+
+  font-size:1.5rem;
+
+  color:#5a2d1f;
+}
+
+/* ================================================= */
+/* 💌 LETTER POPUP */
+/* ================================================= */
+
+#letterPopup{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,0.7);
+
+  display:none;
+  justify-content:center;
+  align-items:center;
+
+  z-index:9999;
+}
+
+/* 📜 PAPER */
+.paper{
+  width:85%;
+  max-width:800px;
+
+  min-height:70vh;
+
+  background:#e8d2a8;
+
+  padding:50px;
+
+  border-radius:8px;
+
+  position:relative;
+
+  overflow-y:auto;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.45);
+
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 28px,
+      rgba(90,60,30,0.08) 29px
+    );
+
+  animation:paperOpen 0.5s ease;
+}
+
+/* ✨ paper effect */
+.paper::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(circle at top left,
+    rgba(255,255,255,0.15),
+    transparent 25%);
+
+  pointer-events:none;
+}
+
+/* ❌ close */
+.close-btn{
+  position:absolute;
+  top:15px;
+  right:20px;
+
+  border:none;
+  background:none;
+
+  font-size:1.5rem;
+
+  cursor:pointer;
+
+  color:#4b2e1e;
+}
+
+/* ⌨️ TYPEWRITER TEXT */
+#letterContent{
+  font-family:'Caveat', cursive;
+
+  font-size:1.7rem;
+
+  line-height:1.9;
+
+  color:#3d2415;
+
+  text-align:left;
+
+  white-space:pre-line;
+}
+
+/* 📜 animation */
+@keyframes paperOpen{
+  from{
+    transform:scale(0.7);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* 📱 mobile */
+@media(max-width:768px){
+
+  .envelope-grid{
+    grid-template-columns:1fr;
+  }
+
+  .envelope{
+    width:180px;
+  }
+
+  .paper{
+    padding:30px;
+  }
+
+  #letterContent{
+    font-size:1.4rem;
+  }
+
+}
